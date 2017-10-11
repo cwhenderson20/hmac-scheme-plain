@@ -16,10 +16,12 @@
 		"lint": "eslint src",
 		"pretest": "npm run lint -S",
 		"test": "jest",
-		"precommit": "lint-staged"
+		"precommit": "lint-staged",
+		"coverage": "jest --coverage && cat ./coverage/lcov.info | coveralls"
 	},
 	"devDependencies": {
 		"@app-press/eslint-config": "^2.0.2",
+		"coveralls": "^3.0.0",
 		"eslint": "^4.8.0",
 		"eslint-config-prettier": "^2.6.0",
 		"eslint-plugin-import": "^2.7.0",
