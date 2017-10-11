@@ -1,5 +1,5 @@
 # hmac-scheme-plain
-[![Build Status](https://travis-ci.org/cwhenderson20/hmac-scheme-plain.svg?branch=master)](https://travis-ci.org/cwhenderson20/hmac-scheme-plain)
+[![Build Status](https://travis-ci.org/cwhenderson20/hmac-scheme-plain.svg?branch=master)](https://travis-ci.org/cwhenderson20/hmac-scheme-plain) [![Coverage Status](https://coveralls.io/repos/github/cwhenderson20/hmac-scheme-plain/badge.svg)](https://coveralls.io/github/cwhenderson20/hmac-scheme-plain)
 
 Plain scheme plugin for [axios-adapter-hmac](https://github.com/cwhenderson20/axios-adapter-hmac). Follows the "plain" scheme spec from  [cmawhorter/hmmac](https://github.com/cmawhorter/hmmac).
 
