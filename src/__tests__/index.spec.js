@@ -113,6 +113,36 @@ content-type;date;host
 56789`);
 });
 
+it("ensures the body is either a string or an object", () => {
+	const data = Buffer.from("");
+	const bufferRequest = Object.assign({}, requestTemplate, { data });
+	const stringRequest = Object.assign({}, requestTemplate, { data: "" });
+	const objectRequest = Object.assign({}, requestTemplate, {
+		data: { key: "value" },
+	});
+
+	expect(() =>
+		scheme.buildCanonicalRequest(bufferRequest, signedHeaders, hash)
+	).toThrow();
+
+	expect(() =>
+		scheme.buildCanonicalRequest(stringRequest, signedHeaders, hash)
+	).not.toThrow();
+
+	expect(() =>
+		scheme.buildCanonicalRequest(objectRequest, signedHeaders, hash)
+	).not.toThrow();
+});
+
+it("stringifies the body if it is an object", () => {
+	const data = { key: "value" };
+	const request = Object.assign({}, requestTemplate, data);
+
+	scheme.buildCanonicalRequest(request, signedHeaders, hash);
+
+	expect(hash).toHaveBeenCalledWith(JSON.stringify(data));
+});
+
 it("generates a canonical request when there are missing headers", () => {
 	const request = Object.assign({}, requestTemplate);
 

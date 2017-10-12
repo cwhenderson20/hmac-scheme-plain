@@ -28,10 +28,13 @@ const hmacSchemePlain = {
 
 		const path = urlParts.pathname;
 		const query = urlParts.query || "";
-		let body = "";
+		let body =
+			request.data === undefined || request.data === null ? "" : request.data;
 
-		if (request.data && Object.keys(request.data).length > 0) {
-			body = JSON.stringify(request.data);
+		if (isObject(body)) {
+			body = JSON.stringify(body);
+		} else if (typeof body !== "string") {
+			throw new Error("request.data must be a string or plain object");
 		}
 
 		const canonicalRequest = `${method}\n${path}\n${query}\n${canonicalHeaders}\n${Object.keys(
@@ -67,5 +70,9 @@ const hmacSchemePlain = {
 		request.headers["x-auth-signedheaders"] = signedHeaders.join(";");
 	},
 };
+
+function isObject(value) {
+	return Object.prototype.toString.call(value) === "[object Object]";
+}
 
 module.exports = hmacSchemePlain;
