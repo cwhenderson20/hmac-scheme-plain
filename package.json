@@ -1,6 +1,6 @@
 {
 	"name": "hmac-scheme-plain",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Sign a request with an HMAC signature",
 	"engines": {
 		"node": ">=6"
